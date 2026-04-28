@@ -31,7 +31,7 @@ A FastAPI-based web application that extracts news articles from URLs, generates
 
 ## ⚙️ Run Locally
 
-```bash
+
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
 pip install -r requirements.txt
@@ -41,7 +41,7 @@ Open:
 
 http://localhost:8000
 http://localhost:8000/docs
------
+
 
 ## 🌐 Deployment (Railway)
 
