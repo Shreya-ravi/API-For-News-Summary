@@ -32,7 +32,7 @@ A FastAPI-based web application that extracts news articles from URLs, generates
 ## ⚙️ Run Locally
 
 
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/shreyaRavi/your-repo-name.git
 cd your-repo-name
 pip install -r requirements.txt
 uvicorn main:app --reload
