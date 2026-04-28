@@ -44,6 +44,8 @@ http://localhost:8000/docs
 -----
 
 ## 🌐 Deployment (Railway)
+
+
 Push code to GitHub
 Go to Railway
 Create New Project → Deploy from GitHub
@@ -52,6 +54,8 @@ Create New Project → Deploy from GitHub
 uvicorn main:app --host 0.0.0.0 --port 8000
 
 # Add requirements.txt
+
+
 Deploy 🚀
 # 🔌 API Endpoints
 Health Check
