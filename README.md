@@ -23,7 +23,7 @@ A FastAPI-based web application that extracts news articles from URLs, generates
 ## 🛠️ Tech Stack
 
 - **Backend:** FastAPI  
-- **Database:** SQLite (dev) → PostgreSQL (recommended for production)  
+- **Database:** SQLite (dev) → PostgreSQL 
 - **ORM:** SQLAlchemy  
 - **Frontend:** HTML, CSS (Jinja2 Templates)  
 
