@@ -41,8 +41,9 @@ Open:
 
 http://localhost:8000
 http://localhost:8000/docs
+-----
 
-# 🌐 Deployment (Railway)
+## 🌐 Deployment (Railway)
 Push code to GitHub
 Go to Railway
 Create New Project → Deploy from GitHub
