@@ -84,3 +84,7 @@ Docker deployment
 # 📌 Conclusion
 
 This project demonstrates a real-world backend system combining web scraping, NLP, API development, and database management using FastAPI.
+
+
+
+# “Heavy ML models (Transformers) can be integrated in production environments.”
