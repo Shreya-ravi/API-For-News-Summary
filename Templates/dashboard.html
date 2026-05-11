@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ಉದಯವಾಣಿ Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #e6f2ff;
+        }
+
+        .navbar {
+            background-color: #0052cc;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            margin: 0;
+        }
+
+        .logout-btn {
+            background: white;
+            color: #0052cc;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .search-panel {
+            padding: 20px;
+        }
+
+        .search-panel form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            min-width: 260px;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #0052cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 12px;
+            color: #0052cc;
+            font-weight: bold;
+        }
+
+        .error-box {
+            margin: 0 20px 20px;
+            background: #fff1f0;
+            color: #b42318;
+            border: 1px solid #f5c2c0;
+            padding: 12px 15px;
+            border-radius: 8px;
+        }
+
+        .history {
+            padding: 0 20px 30px;
+        }
+
+        .history h2 {
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+
+        .history-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .history-card {
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .history-card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .history-card p {
+            margin: 6px 0;
+            color: #334155;
+        }
+
+        .history-card a {
+            color: #0052cc;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>ಉದಯವಾಣಿ</h1>
+    <a href="/logout" class="logout-btn">Logout</a>
+</div>
+
+<div class="search-panel">
+    <form action="/summarize" method="post" id="summarize-form">
+        <input type="text" name="url" placeholder="Paste News URL Here" required>
+        <button type="submit" id="summarize-btn">Summarize</button>
+    </form>
+    <div class="loading" id="loading-text">Summarizing article, please wait...</div>
+</div>
+
+{% if error %}
+<div class="error-box">{{ error }}</div>
+{% endif %}
+
+<div class="history">
+    <h2>Previously Summarized Articles</h2>
+    <div class="history-grid">
+        {% for article in recent_articles %}
+        <div class="history-card">
+            <h3>{{ article.title }}</h3>
+            <p><strong>Gist:</strong> {{ article.preview_summary }}</p>
+            <p><strong>Slug:</strong> {{ article.slug }}</p>
+            <p><strong>Keywords:</strong> {{ article.preview_keywords }}</p>
+            <a href="/s/{{ article.short_code }}">Open summary</a>
+        </div>
+        {% else %}
+        <div class="history-card">
+            <p>No summarized articles yet. Paste a URL above to create the first one.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+document.getElementById("summarize-form").addEventListener("submit", function () {
+    document.getElementById("summarize-btn").disabled = true;
+    document.getElementById("summarize-btn").textContent = "Summarizing...";
+    document.getElementById("loading-text").style.display = "block";
+});
+</script>
+
+</body>
+</html>

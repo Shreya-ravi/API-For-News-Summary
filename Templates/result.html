@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Article Result</title>
+    <style>
+    body{
+        background:#e6f2ff;
+        font-family:Arial;
+        margin:0;
+        padding:40px;
+    }
+    .topbar{
+        display:flex;
+        justify-content:flex-end;
+        margin-bottom:20px;
+    }
+    .logout-btn{
+        background:#0052cc;
+        color:white;
+        padding:10px 16px;
+        border-radius:8px;
+        text-decoration:none;
+        font-weight:bold;
+    }
+    .wrapper{
+        display:flex;
+        gap:20px;
+        align-items:flex-start;
+    }
+    .card{
+        background:white;
+        padding:25px;
+        border-radius:15px;
+        box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    }
+    .left{
+        width:65%;
+    }
+    .right{
+        width:35%;
+        border:2px solid #d9e8ff;
+        background:linear-gradient(180deg, #ffffff 0%, #f3f8ff 100%);
+    }
+    h2{
+        color:#0066cc;
+    }
+    .short{
+        margin-top:20px;
+        font-weight:bold;
+    }
+    a{
+        color:#0066cc;
+        word-break:break-all;
+    }
+    .summary-label{
+        font-weight:bold;
+        margin-top:12px;
+        margin-bottom:5px;
+    }
+    img{
+        width:100%;
+        max-height:400px;
+        object-fit:cover;
+        border-radius:10px;
+        margin-bottom:20px;
+    }
+    .article-box{
+        white-space:pre-wrap;
+        line-height:1.7;
+    }
+    .article-preview{
+        max-height:430px;
+        overflow:hidden;
+        position:relative;
+    }
+    .article-preview.expanded{
+        max-height:none;
+    }
+    .article-preview:not(.expanded)::after{
+        content:"";
+        position:absolute;
+        left:0;
+        right:0;
+        bottom:0;
+        height:80px;
+        background:linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+    }
+    .read-more-btn, .copy-btn{
+        margin-top:14px;
+        padding:10px 14px;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        font-weight:bold;
+    }
+    .read-more-btn{
+        background:#0052cc;
+        color:white;
+    }
+    .copy-btn{
+        background:#e8f1ff;
+        color:#0052cc;
+        margin-left:10px;
+    }
+    @media(max-width:900px){
+        .wrapper{ flex-direction:column; }
+        .left,.right{ width:100%; }
+    }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="/logout" class="logout-btn">Logout</a>
+</div>
+
+<h2>{{ title }}</h2>
+
+{% if image %}
+<img src="{{ image }}" alt="News Image">
+{% endif %}
+
+<div class="wrapper">
+    <div class="card left">
+        <h3>Full Article</h3>
+        <div class="article-box article-preview" id="article-box">{{ article_text }}</div>
+        <button class="read-more-btn" id="read-more-btn" type="button" onclick="toggleArticle()">Read More</button>
+    </div>
+
+    <div class="card right">
+        <h3>Gist</h3>
+
+        <p class="summary-label">English Summary</p>
+        <p>{{ summary_english }}</p>
+
+        <p class="summary-label">Original Language Summary</p>
+        <p>{{ summary_original }}</p>
+
+        <p><strong>Slug:</strong> {{ slug }}</p>
+        <p><strong>Keywords:</strong> {{ keywords }}</p>
+
+        <div class="short">
+            <strong>Short URL:</strong>
+            <a href="{{ short_url }}" target="_blank" id="short-url">{{ short_url }}</a>
+            <button class="copy-btn" type="button" onclick="copyShortUrl()">Copy</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleArticle() {
+    const box = document.getElementById("article-box");
+    const button = document.getElementById("read-more-btn");
+    box.classList.toggle("expanded");
+    button.textContent = box.classList.contains("expanded") ? "Read Less" : "Read More";
+}
+
+function copyShortUrl() {
+    const text = document.getElementById("short-url").textContent;
+    navigator.clipboard.writeText(text).then(function () {
+        const buttons = document.getElementsByClassName("copy-btn");
+        if (buttons.length > 0) {
+            buttons[0].textContent = "Copied";
+            setTimeout(function () {
+                buttons[0].textContent = "Copy";
+            }, 1500);
+        }
+    });
+}
+</script>
+
+</body>
+</html>
