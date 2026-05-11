@@ -7,3 +7,4 @@ python-jose
 newspaper3k
 python-multipart
 jinja2
+lxml_html_clean
