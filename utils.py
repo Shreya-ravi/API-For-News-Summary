@@ -677,8 +677,4 @@ def summarize_text(text):
 
 def generate_short_code(length=8):
     alphabet = string.ascii_letters + string.digits
-<<<<<<< HEAD
-    return ''.join(random.choices(alphabet, k=length))
-=======
-    return ''.join(random.choices(alphabet, k=length))
->>>>>>> 28ae98bd943eed8ceefe4c79262c05552ed5eb0b
+

@@ -5,12 +5,3 @@ alembic
 passlib[bcrypt]
 python-jose
 newspaper3k
-<<<<<<< HEAD
-transformers
-torch
-python-multipart
-=======
-python-multipart
-jinja2
-
->>>>>>> 28ae98bd943eed8ceefe4c79262c05552ed5eb0b
